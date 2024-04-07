@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="favicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="favicon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Prism.DryIoc" Version="8.1.97" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Kstopa.Lx.Admin\Kstopa.Lx.Admin.csproj" />
+    <ProjectReference Include="..\Kstopa.Lx.Controls\Kstopa.Lx.Controls.csproj" />
+    <ProjectReference Include="..\Kstopa.Lx.Core\Kstopa.Lx.Core.csproj" />
+    <ProjectReference Include="..\Kstopa.Lx.SugarDb\Kstopa.Lx.SugarDb.csproj" />
+  
+  </ItemGroup>
+</Project>

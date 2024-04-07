@@ -1,0 +1,11 @@
+﻿<mah:MetroWindow x:Class="Kstopa.Lx.WMS.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:prism="http://prismlibrary.com/"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        Title="{Binding Title}" Height="350" Width="525" >
+    <Grid>
+        <TextBlock Text="{Binding Title}"/>
+    </Grid>
+</mah:MetroWindow>
