@@ -9,5 +9,6 @@ namespace Kstopa.Lx.Admin.IRepositorys
 {
     public interface IUserRepository : IBaseRepository<UserInfo>
     {
+       
     }
 }

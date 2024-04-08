@@ -8,8 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Mapster" Version="7.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Kstopa.Lx.Core\Kstopa.Lx.Core.csproj" />
     <ProjectReference Include="..\Kstopa.Lx.SugarDb\Kstopa.Lx.SugarDb.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Providers\NLogSign\" />
   </ItemGroup>
 
 </Project>

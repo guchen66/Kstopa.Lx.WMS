@@ -12,17 +12,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Kstopa.Lx.Admin.LoginSign
+namespace Kstopa.Lx.Admin.Providers.LoginSign
 {
     public class LoginService : ILoginService
     {
-        public SimpleClient<UserInfo> db=new SimpleClient<UserInfo>();
+        public SimpleClient<UserInfo> db = new SimpleClient<UserInfo>();
         private readonly IEventAggregator _eventAggregator;
-      //  private readonly ILogger _logger;
+        //  private readonly ILogger _logger;
         private readonly IContainerProvider _container;
-        public LoginService(IEventAggregator eventAggregator,IContainerProvider container)
+        public LoginService(IEventAggregator eventAggregator, IContainerProvider container)
         {
-          //  this._logger = logger;
+            //  this._logger = logger;
             _eventAggregator = eventAggregator;
             _container = container;
             _eventAggregator.GetEvent<LoginEvent>().Subscribe(LoginExecute);
@@ -60,10 +60,10 @@ namespace Kstopa.Lx.Admin.LoginSign
 
         public async Task<LoginInputDto> IsCanLoginAsync()
         {
-            LoginInputDto loginInputDto=new LoginInputDto();
-            var userInfo = await db.GetFirstAsync(x=>x.Name=="Admin"&&x.Password=="123456");
-            userInfo.Name= loginInputDto.UserName;
-            userInfo.Password= loginInputDto.Password;
+            LoginInputDto loginInputDto = new LoginInputDto();
+            var userInfo = await db.GetFirstAsync(x => x.Name == "Admin" && x.Password == "123456");
+            userInfo.Name = loginInputDto.UserName;
+            userInfo.Password = loginInputDto.Password;
             return loginInputDto;
         }
     }

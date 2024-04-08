@@ -9,12 +9,15 @@ using System;
 using System.Windows;
 using Kstopa.Lx.Controls;
 using Prism.Events;
-using Kstopa.Lx.Admin.LoginSign;
 using SqlSugar;
-//using Kstopa.Lx.System.IServices;
-//using Kstopa.Lx.System.Services;
-//using Kstopa.Lx.System.IRepositorys;
-//using Kstopa.Lx.System.Repositorys;
+using Kstopa.Lx.Admin.IServices;
+using Kstopa.Lx.Admin.Services;
+using Kstopa.Lx.Admin.IRepositorys;
+using Kstopa.Lx.Admin.Repositorys;
+using Mapster;
+using MapsterMapper;
+using System.Reflection;
+using Kstopa.Lx.Admin.Providers.LoginSign;
 
 namespace Kstopa.Lx.WMS
 {
@@ -30,10 +33,10 @@ namespace Kstopa.Lx.WMS
         //  private static readonly Cargo.Core.Loggers.ILogger logger = LogManager.GetCurrentClassLogger();
         protected override void OnStartup(StartupEventArgs e)
         {
-            mutex = new Mutex(true, "仓库管理系统");
+            mutex = new Mutex(true, "WMS系统");
             if (!mutex.WaitOne(TimeSpan.Zero, true))
             {
-                MessageBox.Show("警告，已重复打开软件！", "仓库管理系统", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("警告，已重复打开软件！", "WMS系统", MessageBoxButton.OK, MessageBoxImage.Error);
                 Environment.Exit(0);
             }
             AppStartup.AddSqlSugar();                 //注册SqlSugar
@@ -77,8 +80,8 @@ namespace Kstopa.Lx.WMS
         {
             containerRegistry.RegisterSingleton<IEventAggregator, EventAggregator>();
             //注册MahMapps.Metro控件的对话框，方面使用
-            //  containerRegistry.Register<IDialogCoordinator, DialogCoordinator>();
-
+            containerRegistry.Register<IDialogCoordinator, DialogCoordinator>();
+            containerRegistry.Register<IMapper, Mapper>();
             //注册对话框弹窗
             /*   containerRegistry.RegisterDialog<MyDialogView, MyDialogViewModel>();
 
@@ -92,9 +95,13 @@ namespace Kstopa.Lx.WMS
 
                containerRegistry.RegisterSingleton<ILogger, NLogLogger>();
                containerRegistry.RegisterSingleton<LoggerHelper>();*/
-            containerRegistry.RegisterSingleton(typeof(ISimpleClient<>),typeof(SimpleClient<>));
+            containerRegistry.RegisterScoped(typeof(IBaseService<>),typeof(BaseService<>));
+            containerRegistry.RegisterScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             containerRegistry.Register<ILoginService, LoginService>();
             RegisterRepository_Service(containerRegistry);
+
+
+            RegisterMapper(containerRegistry);
         }
 
         private void RegisterRepository_Service(IContainerRegistry containerRegistry)
@@ -154,6 +161,23 @@ namespace Kstopa.Lx.WMS
             return base.CreateContainerRules();
         }
 
+        /// <summary>
+        /// 注册Mapster
+        /// </summary>
+        /// <param name="containerRegistry"></param>
+        private void RegisterMapper(IContainerRegistry containerRegistry)
+        {
 
+            var config = new TypeAdapterConfig();
+            var assembly = Assembly.Load("Kstopa.Lx.Admin");
+            config.Scan(assembly);
+
+            // 注册单例实例
+            containerRegistry.RegisterInstance(typeof(TypeAdapterConfig), config);
+
+            // 创建并注册 Mapper 实例
+            var mapper = new Mapper(config);
+            containerRegistry.RegisterInstance(typeof(Mapper), mapper);
+        }
     }
 }

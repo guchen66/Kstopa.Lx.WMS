@@ -9,5 +9,7 @@ namespace Kstopa.Lx.Admin.IServices
 {
     public interface IUserService : IBaseService<UserInfo>
     {
+        
+       
     }
 }

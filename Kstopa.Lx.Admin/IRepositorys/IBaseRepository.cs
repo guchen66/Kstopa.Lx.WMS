@@ -14,6 +14,7 @@ namespace Kstopa.Lx.Admin.IRepositorys
     /// <typeparam name="TEntity"></typeparam>
     public interface IBaseRepository<TEntity> where TEntity : class, new()
     {
+        ISqlSugarClient Context { get; }
         #region 增删改查
 
         Task<bool> AddAsync(TEntity entity);

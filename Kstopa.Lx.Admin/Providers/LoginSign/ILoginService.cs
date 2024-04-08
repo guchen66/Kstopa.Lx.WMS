@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Kstopa.Lx.Admin.LoginSign
+namespace Kstopa.Lx.Admin.Providers.LoginSign
 {
     public interface ILoginService
     {

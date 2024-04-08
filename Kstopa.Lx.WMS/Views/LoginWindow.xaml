@@ -12,8 +12,8 @@
     Height="350"
     prism:ViewModelLocator.AutoWireViewModel="True"
     GlowBrush="{DynamicResource MahApps.Brushes.Accent}"
-    ResizeMode="CanResizeWithGrip"
     ShowIconOnTitleBar="True"
+    ResizeMode="NoResize"
     Style="{DynamicResource MahApps.Styles.MetroWindow.Clean}"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">

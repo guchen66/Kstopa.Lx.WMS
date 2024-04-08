@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Kstopa.Lx.Controls.Views
+namespace Kstopa.Lx.Controls.Views.Dialogs
 {
     /// <summary>
-    /// Interaction logic for ViewA.xaml
+    /// UpdateUserInfoDialog.xaml 的交互逻辑
     /// </summary>
-    public partial class ViewA : UserControl
+    public partial class UpdateUserInfoDialog : UserControl
     {
-        public ViewA()
+        public UpdateUserInfoDialog()
         {
             InitializeComponent();
         }

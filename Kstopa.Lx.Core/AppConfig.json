@@ -1,7 +1,7 @@
 {
   "SqlConnection": {
     "Sqlserver": "server=.;uid=sa;pwd=211314;database=CargoDb;Trusted_Connection=true;",
-    "Mysql": "Data Source=localhost;Initial Catalog=system_cargo;User ID=root;Password=1314"
+    "Mysql": "Data Source=localhost;Initial Catalog=system_cargo;User ID=root;Password=1314;"
   },
   "SkinInfo": {
     "Blue": "Brushes.Blue",

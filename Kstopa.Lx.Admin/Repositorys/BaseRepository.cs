@@ -16,6 +16,9 @@ namespace Kstopa.Lx.Admin.Repositorys
         {
             base.Context = DbScoped.Sugar;
         }
+        
+
+        ISqlSugarClient IBaseRepository<TEntity>.Context => base.Context;
 
         public async Task<bool> AddAsync(TEntity entity)
         {

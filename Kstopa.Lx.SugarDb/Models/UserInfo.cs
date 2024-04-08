@@ -26,7 +26,12 @@ namespace Kstopa.Lx.SugarDb.Models
 
         public int? RoleId { get; set; }
 
+        //默认主键模式和子表的主键Id对应
         [Navigate(NavigateType.OneToOne, nameof(RoleId))]
         public RoleInfo Role { get; set; }
+
+        //C#12.0版本可用非主键模式
+      /*  [Navigate(NavigateType.OneToOne, nameof(RoleId),nameof(Role.Sort))]
+        public RoleInfo Role { get; set; }*/
     }
 }

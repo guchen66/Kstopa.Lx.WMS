@@ -14,30 +14,31 @@ using SqlSugar.IOC;
 using Kstopa.Lx.Controls.Commands;
 using Kstopa.Lx.Core.Events;
 using NewLife.Log;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using Kstopa.Lx.Core.Dtos;
 using System.DirectoryServices.Protocols;
 using Kstopa.Lx.Core.Consts;
-using Kstopa.Lx.Admin.LoginSign;
 using SqlSugar;
+using Kstopa.Lx.Admin.IServices;
+using Kstopa.Lx.Admin.IRepositorys;
+using Kstopa.Lx.Admin.Providers.LoginSign;
 namespace Kstopa.Lx.WMS.ViewModels
 {
     public class LoginWindowViewModel : BaseViewModel
     {
         ILoginService _loginService;
 
-        private readonly ISimpleClient<UserInfo> _userRepository;
+        private readonly IBaseRepository<UserInfo> _userRepository;
       
         public LoginWindowViewModel(ILoginService loginService,IContainerProvider provider) : base(provider)
         {
-            _userRepository=provider.Resolve<ISimpleClient<UserInfo>>();
+            _userRepository=provider.Resolve<IBaseRepository<UserInfo>>();
             _loginService = loginService;
             LoginCommand = new DelegateCommand<Window>(async (win) => await ExecuteLogin(win));
             CancelCommand = new DelegateCommand(ExecuteCancel);
         }
 
         private async Task ExecuteLogin(Window win)
-        {
+        {         
             EventAggregator.GetEvent<LoginEvent>().Publish(win);
             await Task.Delay(100); // 假设等待100毫秒，你可以根据实际情况调整
             //logger.Info($"用户进行了登录操作");
@@ -52,11 +53,9 @@ namespace Kstopa.Lx.WMS.ViewModels
                 MessageBox.Show(loginResult.Result.ToString());
             }*/
         }
-        public SimpleClient<UserInfo> db = new SimpleClient<UserInfo>();
         private void ExecuteCancel()
         {
-            var s=db.GetList();
-            var s2 = _userRepository.AsSugarClient();//.Queryable<UserInfo>().Any(x=>x.Name=="Admin");
+           
             
             EventAggregator.GetEvent<LogOutEvent>().Publish();
         }

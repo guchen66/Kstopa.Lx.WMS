@@ -1,4 +1,5 @@
-﻿using Kstopa.Lx.Core.Globals;
+﻿using Kstopa.Lx.Core.Common;
+using Kstopa.Lx.Core.Globals;
 using Prism.Events;
 using Prism.Ioc;
 using Prism.Mvvm;
@@ -22,7 +23,7 @@ namespace Kstopa.Lx.Controls.Mvvm
         public IRegionNavigationJournal NavigationJournal;  //导航日志，上一页，下一页
         public IRegionManager RegionManager;                //区域管理
         public IEventAggregator EventAggregator;            //事件处理
-        public IDialogService DialogService { get; set; }   //页面跳转
+        public IDialogService DialogService { get; set; }   //打开弹窗
         public IContainerProvider Provider { get; set; }    //服务容器
         public AppData appData { get; set; } = AppData.Instance;
 
@@ -36,5 +37,25 @@ namespace Kstopa.Lx.Controls.Mvvm
 
         }
 
+        /// <summary>
+        /// 默认情况下，直接导航
+        /// </summary>
+        /// <param name="navigatePath"></param>
+        /// <param name="completeNavigation"></param>
+        protected void NavigationToView(string navigatePath,bool completeNavigation=true)
+        {
+            if (navigatePath != null)
+                RegionManager.RequestNavigate(RegionNames.ContentRegion, navigatePath, arg =>
+                {
+                    NavigationJournal = arg.Context.NavigationService.Journal;
+                });
+        }
+
+        private void NavigationComplete(NavigationResult result)
+        {
+            System.Windows.MessageBox.Show(String.Format("Navigation to {0} complete. ", result.Context.Uri));
+
+            // MessageBox.Ask("内容","标题");
+        }
     }
 }

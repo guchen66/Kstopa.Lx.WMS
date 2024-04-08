@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Mapster" Version="7.4.0" />
     <PackageReference Include="NewLife.Core" Version="10.9.2024.402" />
     <PackageReference Include="Prism.Core" Version="8.1.97" />
   </ItemGroup>
@@ -16,6 +17,10 @@
     <None Update="AppConfig.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Providers\" />
   </ItemGroup>
 
 </Project>

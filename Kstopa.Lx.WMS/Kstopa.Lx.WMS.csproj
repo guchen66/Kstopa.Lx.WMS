@@ -6,6 +6,14 @@
     <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Assets\Fonts\iconfont.ttf" />
+    <None Remove="Assets\Images\0.jpg" />
+    <None Remove="Assets\Images\bg.jpeg" />
+    <None Remove="Assets\Images\Header.jpeg" />
+    <None Remove="Assets\Images\home.jpg" />
+    <None Remove="Assets\Images\set.png" />
+    <None Remove="Assets\Images\设计.jpg" />
+    <None Remove="Assets\Images\雪花.jpeg" />
     <None Remove="favicon.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -22,5 +30,15 @@
     <ProjectReference Include="..\Kstopa.Lx.Core\Kstopa.Lx.Core.csproj" />
     <ProjectReference Include="..\Kstopa.Lx.SugarDb\Kstopa.Lx.SugarDb.csproj" />
   
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Fonts\iconfont.ttf" />
+    <Resource Include="Assets\Images\0.jpg" />
+    <Resource Include="Assets\Images\bg.jpeg" />
+    <Resource Include="Assets\Images\Header.jpeg" />
+    <Resource Include="Assets\Images\home.jpg" />
+    <Resource Include="Assets\Images\set.png" />
+    <Resource Include="Assets\Images\设计.jpg" />
+    <Resource Include="Assets\Images\雪花.jpeg" />
   </ItemGroup>
 </Project>

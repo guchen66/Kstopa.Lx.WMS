@@ -10,5 +10,6 @@ namespace Kstopa.Lx.Admin.Repositorys
 {
     public class UserRepository : BaseRepository<UserInfo>, IUserRepository
     {
+       
     }
 }
