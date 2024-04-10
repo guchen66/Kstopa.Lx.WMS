@@ -7,11 +7,12 @@
     xmlns:iconPack="http://metro.mahapps.com/winfx/xaml/iconpacks"
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:prism="http://prismlibrary.com/"
-    xmlns:timePicker="clr-namespace:Kstopa.Lx.Controls.Converters">
+   >
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Clean/Controls.xaml" />
     </ResourceDictionary.MergedDictionaries>
     <cvt:SelectetemRoleToIntConverter x:Key="selectetemRoleToIntConverter" />
+    <cvt:IntToStringConverter x:Key="intToStringConverter"/>
     <!--  修改弹窗的样式为锁定状态。无法移动，无法放大缩小  -->
     <Style x:Key="DialogStyle" TargetType="UserControl">
         <Setter Property="Background" Value="Transparent" />

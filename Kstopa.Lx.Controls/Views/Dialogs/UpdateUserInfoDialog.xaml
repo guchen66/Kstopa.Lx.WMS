@@ -10,7 +10,6 @@
     xmlns:markUp="clr-namespace:Kstopa.Lx.Core.Extensions;assembly=Kstopa.Lx.Core"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="http://prismlibrary.com/"
-    xmlns:timePicker="clr-namespace:Kstopa.Lx.Controls.Converters"
       Style="{StaticResource DialogStyle}"
     prism:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d">
@@ -94,7 +93,7 @@
                         VerticalAlignment="Center"
                         FontSize="20"
                         Text="日期：" />
-                    <timePicker:MyDateTimePicker
+                    <cvt:MyDateTimePicker
                         Width="220"
                         Height="30"
                         HorizontalAlignment="Center"

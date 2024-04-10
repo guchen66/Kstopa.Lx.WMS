@@ -29,8 +29,6 @@ namespace Kstopa.Lx.Controls.ViewModels
     {
         #region 属性、字段
 
-        private readonly IDialogCoordinator _dialogCoordinator;
-
         private ObservableCollection<UserInfoDto> _userInfos;
         public ObservableCollection<UserInfoDto> UserInfos
         {
@@ -38,7 +36,7 @@ namespace Kstopa.Lx.Controls.ViewModels
             set =>SetProperty(ref _userInfos, value);
         }
         private IBaseRepository<UserInfoDto> _userRepository;
-        private readonly IMapper _mapper;
+
         #endregion
 
         #region 命令
@@ -55,12 +53,10 @@ namespace Kstopa.Lx.Controls.ViewModels
 
         private DispatcherTimer _timer;
         private bool _isDelaying;
-        public UserInfoViewModel(IBaseRepository<UserInfoDto> userRepository, IMapper mapper,IContainerProvider provider) : base(provider)
+        public UserInfoViewModel(IBaseRepository<UserInfoDto> userRepository,IContainerProvider provider) : base(provider)
         {
             _userRepository = userRepository;
-            _mapper = mapper;
-            _dialogCoordinator = provider.Resolve<IDialogCoordinator>();
-
+         
             LoadedCommand = new DelegateCommand(ExecuteIniting);
             QueryUserCommand = new DelegateCommand(ExecuteQueryUser);
             AddUserCommand = new DelegateCommand(ExecuteAddUser);
@@ -89,7 +85,7 @@ namespace Kstopa.Lx.Controls.ViewModels
               //  DbScoped.Sugar.QueryFilter.AddTableFilter<UserInfo>(it => it.IsDelete == "0");
               //  _userRepository.Context.QueryFilter.AddTableFilter<UserInfo>(x => x.IsDelete == "0");
                 var users = await _userRepository.Context.Queryable<UserInfo>().Includes(x => x.Role).ToListAsync();        //连同关联表字段一起查询
-                UserInfos = _mapper.Map<List<UserInfoDto>>(users).ToObservableCollection();
+                UserInfos = DefaultMapper.Map<List<UserInfoDto>>(users).ToObservableCollection();
               
             }
             catch (Exception ex)
@@ -101,7 +97,7 @@ namespace Kstopa.Lx.Controls.ViewModels
 
         public async void ShowProgressDialogAsync()
         {
-            var controller = await _dialogCoordinator.ShowProgressAsync(this, "请稍等", "操作失败...");
+            var controller = await DialogCoordinator.ShowProgressAsync(this, "请稍等", "操作失败...");
             controller.SetIndeterminate();
             // 执行长时间运行的操作
             await Task.Delay(2000);
@@ -117,7 +113,7 @@ namespace Kstopa.Lx.Controls.ViewModels
             var users = await _userRepository.Context.Queryable<UserInfo>().Includes(x => x.Role).Where(it => it.Id.ToString().Contains(SearchContent)
                                        || it.Name.Contains(SearchContent)
                                        || it.Password.Contains(SearchContent)).ToListAsync();
-            var userDtos = _mapper.Map<List<UserInfoDto>>(users);
+            var userDtos = DefaultMapper.Map<List<UserInfoDto>>(users);
             UserInfos = userDtos.ToObservableCollection();
         }
 
@@ -160,7 +156,7 @@ namespace Kstopa.Lx.Controls.ViewModels
             DialogParameters paramters = new DialogParameters();
             paramters.Add("dataList", dataList);
 
-            paramters.Add("RefreshValue", new Action(ExecuteRefresh));
+            paramters.Add("RefreshValue", new Action(ExecuteAutoRefresh));
 
             DialogService.ShowDialog("UpdateUserInfoDialog", paramters, r =>
             {
@@ -189,7 +185,7 @@ namespace Kstopa.Lx.Controls.ViewModels
                     AnimateHide = false,
                     AffirmativeButtonText = "确认"
                 };
-                var result = await this._dialogCoordinator.ShowMessageAsync(this, "是否删除该用户?", "删除用户", MessageDialogStyle.AffirmativeAndNegative, settings);
+                var result = await this.DialogCoordinator.ShowMessageAsync(this, "是否删除该用户?", "删除用户", MessageDialogStyle.AffirmativeAndNegative, settings);
                 if (result == MessageDialogResult.Affirmative)
                 {
                     //软删除
@@ -209,7 +205,7 @@ namespace Kstopa.Lx.Controls.ViewModels
         private void ExecuteAutoRefresh()
         {
             var users = _userRepository.Context.Queryable<UserInfo>().Includes(x => x.Role).ToList();
-            var userDtos = _mapper.Map<List<UserInfoDto>>(users);
+            var userDtos = DefaultMapper.Map<List<UserInfoDto>>(users);
             UserInfos.Clear();
             if (users != null)
             {
@@ -270,11 +266,10 @@ namespace Kstopa.Lx.Controls.ViewModels
                 AnimateHide = false,
 
             };
-            var controller = await this._dialogCoordinator.ShowProgressAsync(this, "请稍等", "正在刷新数据...", settings: mySettings);
+            var controller = await this.DialogCoordinator.ShowProgressAsync(this, "请稍等", "正在刷新数据...", settings: mySettings);
 
             controller.SetIndeterminate();
             SearchContent = string.Empty;
-
             this.ExecuteAutoRefresh();
             await Task.Delay(3000); 
             await controller.CloseAsync();

@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -52,7 +53,8 @@ namespace Kstopa.Lx.Controls.ViewModels.Dialogs
             set { SetProperty(ref _password, value); }
         }
 
-     
+
+        public List<UserInfo> users = null;
         private ObservableCollection<UserInfo> _UserInfoList;
 
         public ObservableCollection<UserInfo> UserInfoList
@@ -91,6 +93,17 @@ namespace Kstopa.Lx.Controls.ViewModels.Dialogs
 
         public override void OnDialogOpened(IDialogParameters parameters)
         {
+            if (parameters.ContainsKey("dataList"))
+            {
+                users = parameters.GetValue<List<UserInfo>>("dataList");
+                foreach (var user in users)
+                {
+                    CurrentId = user.Id;
+                    InputName = user.Name;
+                    InputPassword = user.Password;
+                    DateValue = (DateTime)user.CreateTime;
+                }
+            }
             if (parameters.ContainsKey("RefreshValue"))
             {
                 action = parameters.GetValue<Action>("RefreshValue");
@@ -99,6 +112,16 @@ namespace Kstopa.Lx.Controls.ViewModels.Dialogs
 
         private void ExecuteSave(int? id)
         {
+            var users = _userRepository.Context.Queryable<UserInfo>().Where(x => x.Id == id).First();
+            if (users != null)
+            {
+                users.Name = InputName;
+                users.Password = InputPassword;
+              
+                users.RoleId = RoleName.ToInt()+1;       //导航一对一修改RloId就行  +1是因为枚举从0开始的，而数据库Role表的主键是从1开始的
+                users.CreateTime = DateValue;
+              var s=  _userRepository.Context.Updateable(users).ExecuteCommand();
+            }
             RaiseRequestClose(new DialogResult(ButtonResult.OK));
         }
 

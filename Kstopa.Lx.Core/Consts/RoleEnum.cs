@@ -7,6 +7,9 @@ using Kstopa.Lx.Core.Attributes;
 
 namespace Kstopa.Lx.Core.Consts
 {
+    /// <summary>
+    /// 这里的RoleRemark和数据库Role表的主键相对应
+    /// </summary>
     public enum RoleEnum
     {
         [RoleRemark(1)]

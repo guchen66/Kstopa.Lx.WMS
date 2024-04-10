@@ -1,4 +1,6 @@
-﻿using Prism.Ioc;
+﻿using MahApps.Metro.Controls.Dialogs;
+using MapsterMapper;
+using Prism.Ioc;
 using Prism.Mvvm;
 using Prism.Regions;
 using System;
@@ -14,9 +16,12 @@ namespace Kstopa.Lx.Controls.Mvvm
     /// </summary>
     public abstract class BaseNavigationAware :BaseViewModel,  INavigationAware
     {
+        public IDialogCoordinator DialogCoordinator { get; set; }
+        public IMapper DefaultMapper { get; set; }
         protected BaseNavigationAware(IContainerProvider provider) : base(provider)
         {
-
+            DialogCoordinator = provider.Resolve<IDialogCoordinator>();
+            DefaultMapper = provider.Resolve<IMapper>();
         }
 
         //省去了string.Empty的操作，视图初始化

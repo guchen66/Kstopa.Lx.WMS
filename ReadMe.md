@@ -1,6 +1,6 @@
 Kstopa.Lx.WMS仓库管理系统
 
-使用Prism.DryIoc+SqlSugar+Mysql+MahApps+AutoMapper
+使用Prism.DryIoc+SqlSugar+Mysql+MahApps+Mapster
 
 1. **库存管理**：
    - 实时库存跟踪：监控库存水平，确保库存数据的准确性。

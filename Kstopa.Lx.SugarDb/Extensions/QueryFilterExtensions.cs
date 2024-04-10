@@ -15,6 +15,7 @@ namespace Kstopa.Lx.SugarDb.Extensions
         {
            // DbScoped.Sugar.QueryFilter.AddTableFilter<UserInfo>(it => it.IsDelete == "0");
             client.QueryFilter.Add(new TableFilterItem<UserInfo>(it => it.IsDelete == "0" || it.IsDelete == null));
+            client.QueryFilter.Add(new TableFilterItem<WareHouse>(it => it.IsDelete == "0" || it.IsDelete == null));
         }
     }
 }

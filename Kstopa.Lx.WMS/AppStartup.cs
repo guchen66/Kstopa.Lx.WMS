@@ -35,7 +35,7 @@ namespace Kstopa.Lx.WMS
 
                 ////创建表
                 DbScoped.Sugar.CodeFirst.InitTables(
-                    typeof(UserInfo), typeof(RoleInfo),typeof(AsideMenuControl)
+                    typeof(UserInfo), typeof(RoleInfo),typeof(AsideMenuControl),typeof(WareHouse)
 
                 );
             }

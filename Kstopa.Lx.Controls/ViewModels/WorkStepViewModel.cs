@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Kstopa.Lx.Controls.ViewModels
 {
-    public class WorkStationViewModel : BaseNavigationAware
+    public class WorkStepViewModel : BaseNavigationAware
     {
-        public WorkStationViewModel(IContainerProvider provider) : base(provider)
+        public WorkStepViewModel(IContainerProvider provider) : base(provider)
         {
         }
     }
