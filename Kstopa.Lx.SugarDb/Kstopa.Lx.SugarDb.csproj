@@ -9,4 +9,8 @@
     <PackageReference Include="SqlSugarCore" Version="5.1.4.151" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Kstopa.Lx.Core\Kstopa.Lx.Core.csproj" />
+  </ItemGroup>
+
 </Project>

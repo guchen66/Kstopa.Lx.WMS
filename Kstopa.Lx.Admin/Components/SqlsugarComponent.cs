@@ -1,4 +1,5 @@
-﻿using Kstopa.Lx.Admin.IRepositorys;
+﻿using Kstopa.Lx.Admin.Contexts;
+using Kstopa.Lx.Admin.IRepositorys;
 using Kstopa.Lx.Admin.IServices;
 using Kstopa.Lx.Admin.Providers.LoginSign;
 using Kstopa.Lx.Admin.Repositorys;
@@ -18,7 +19,7 @@ namespace Kstopa.Lx.Admin.Components
         {
             registry.RegisterScoped(typeof(IBaseService<>), typeof(BaseService<>));
             registry.RegisterScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
-
+            registry.RegisterScoped<IProductDataConfigService,ProductDataConfigService>();
             // containerRegistry.RegisterScoped<IUserService, UserService>();
             // containerRegistry.Register<IUserRepository, UserRepository>();
         }

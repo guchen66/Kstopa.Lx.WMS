@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kstopa.Lx.SugarDb", "Kstopa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kstopa.Lx.Admin", "Kstopa.Lx.Admin\Kstopa.Lx.Admin.csproj", "{19E32188-BD11-4242-83CD-56FA785427FA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kstopa.Lx.Communication", "Kstopa.Lx.Communication\Kstopa.Lx.Communication.csproj", "{4EBFF451-142E-4DB0-8D7D-48598D9F4316}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{19E32188-BD11-4242-83CD-56FA785427FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19E32188-BD11-4242-83CD-56FA785427FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19E32188-BD11-4242-83CD-56FA785427FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EBFF451-142E-4DB0-8D7D-48598D9F4316}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EBFF451-142E-4DB0-8D7D-48598D9F4316}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EBFF451-142E-4DB0-8D7D-48598D9F4316}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EBFF451-142E-4DB0-8D7D-48598D9F4316}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

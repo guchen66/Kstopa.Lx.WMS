@@ -59,29 +59,13 @@ namespace Kstopa.Lx.Controls.ViewModels
         }
 
         #region 方法
-        //查询全部
-     /*   public ObservableCollection<WareHouse> SelectAll()
-        {
-            List<WareHouse> cargos = new List<WareHouse>();
-            if (cargos != null)
-            {
-                WareHouseList.Clear();
-                cargos.ForEach(x => WareHouseList.Add(x));
-            }
-            return WareHouseList;
-        }
-*/
-        //TextBox初始为Empty
-        private string search = string.Empty;
 
+        //TextBox初始为Empty
+        private string _search = string.Empty;
         public string Search
         {
-            get { return search; }
-            set
-            {
-                search = value;
-                RaisePropertyChanged();
-            }
+            get => _search;
+            set=> SetProperty(ref _search, value);
         }
 
         /// <summary>
@@ -107,7 +91,7 @@ namespace Kstopa.Lx.Controls.ViewModels
         }
 
         /// <summary>
-        /// 添加
+        /// 添加 如果将刷新传递过去，那么DialogCompleted回调可以不写
         /// </summary>
         private void ExecuteAdd()
         {
@@ -137,11 +121,11 @@ namespace Kstopa.Lx.Controls.ViewModels
         /// <param name="id"></param>
         private void ExecuteUpdate(int? id)
         {
-            var dataList = _wareHouseRepository.Context.Queryable<WareHouse>().Where(it => it.Id == id);
+            var dataList = _wareHouseRepository.Context.Queryable<WareHouse>().Where(it => it.Id == id).ToList();
             DialogParameters paramters = new DialogParameters();
             paramters.Add("dataList", dataList);
             paramters.Add("RefreshValue", new Action(Refresh));
-            DialogService.ShowDialog("UpdateWareHouseDialog", paramters, r => { });
+            DialogService.ShowDialog("UpdateWareHouseDialog", paramters, DialogCompleted);
         }
 
         /// <summary>
@@ -150,28 +134,15 @@ namespace Kstopa.Lx.Controls.ViewModels
         /// <param name="search"></param>
         private async void ExecuteDownLoad(string search)
         {
-            var fileName = $"{DateTime.Now:yyyyMMddHHmmss}-Cargo.xlsx";
+            var fileName = $"{DateTime.Now:yyyyMMddHHmmss}-仓储.xlsx";
             var filePath = Path.Combine(
                 Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory),
                 fileName
             );
             var dataList = _wareHouseRepository.Context.Queryable<WareHouse>().ToList();
             MiniExcel.SaveAs(filePath, RewriteTitle(dataList));
-            var settings = new MetroDialogSettings
-            {
-                AffirmativeButtonText = "确认",
-                AnimateHide = true,
-                AnimateShow = true,
-                ColorScheme = MetroDialogColorScheme.Accented
-            };
-
-            await DialogCoordinator.ShowMessageAsync(
-                this,
-                "提示",
-                "操作成功！",
-                MessageDialogStyle.Affirmative,
-                settings
-            );
+            await CompletedDialogAsync();
+           
         }
 
         private IEnumerable<Dictionary<string, object>> RewriteTitle(List<WareHouse> cargoModels)
@@ -203,29 +174,16 @@ namespace Kstopa.Lx.Controls.ViewModels
 
             if (model != null)
             {
-                var settings = new MetroDialogSettings
-                {
-                    ColorScheme = MetroDialogColorScheme.Accented,
-                    AnimateShow = false,
-                    AnimateHide = false,
-                    AffirmativeButtonText = "确认"
-                };
-                var result = await this.DialogCoordinator.ShowMessageAsync(
-                    this,
-                    "是否删除该用户?",
-                    "删除用户",
-                    MessageDialogStyle.AffirmativeAndNegative,
-                    settings
-                );
+                var result= await ShowBaseNavigationAwareMessageDialogAsync();
                 if (result == MessageDialogResult.Affirmative)
                 {
                     //刷新
-                    _wareHouseRepository.Context.Deleteable<WareHouse>(ids);
-                    Refresh();
+                    _wareHouseRepository.Context.Deleteable<WareHouse>().In(ids).IsLogic().ExecuteCommand();
+                    ExecuteAutoRefresh();
                 }
                 if (result == MessageDialogResult.Negative)
                 {
-                    Refresh();
+                    ExecuteAutoRefresh();
                 }
             }
         }

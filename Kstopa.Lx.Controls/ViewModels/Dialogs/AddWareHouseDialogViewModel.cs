@@ -21,7 +21,7 @@ namespace Kstopa.Lx.Controls.ViewModels.Dialogs
         public string Title => "添加仓库弹窗";
         public event Action action;
         private IBaseRepository<WareHouse> _wareHouseRepository;
-
+        private IBaseRepository<UserInfo> _userRepository;
         private WareHouseDto _wareHouseDto;
 
         public WareHouseDto WareHouseDto
@@ -32,11 +32,13 @@ namespace Kstopa.Lx.Controls.ViewModels.Dialogs
 
         #endregion
 
-        public AddWareHouseDialogViewModel(IBaseRepository<WareHouse> wareHouseRepository)
+        public AddWareHouseDialogViewModel(IBaseRepository<WareHouse> wareHouseRepository, IBaseRepository<UserInfo> userRepository)
         {
             _wareHouseRepository = wareHouseRepository;
+            _userRepository = userRepository;
             SaveCommand = new DelegateCommand<string>(ExecuteSave);
             CancelCommand = new DelegateCommand<string>(ExecuteCancel);
+            _userRepository = userRepository;
         }
 
         #region 命令
@@ -47,39 +49,28 @@ namespace Kstopa.Lx.Controls.ViewModels.Dialogs
 
         #region 方法
 
-      /*  public override void OnDialogClosed()
-        {
-            action();
-        }*/
-
-    /*    public override void OnDialogOpened(IDialogParameters parameters)
-        {
-            if (parameters.ContainsKey("RefreshValue"))
-            {
-                action = parameters.GetValue<Action>("RefreshValue");
-            }
-        }
-*/
         private void ExecuteSave(string parameter)
         {
             WareHouse wareHouse = new WareHouse()
             {
-               WareHouseId=WareHouseDto.Id,
-               WareHouseName=WareHouseDto.WareHouseName,
-               ItemTotal=WareHouseDto.ItemTotal,
+               WareHouseId=WareHouseDto.WareHouseId,
+               WareHouseName =WareHouseDto.WareHouseName,
+               ItemTotal=WareHouseDto.ItemTotal.ToInt(),
                ItemType=WareHouseDto.ItemType,
                Price=WareHouseDto.Price,
-               UpdateTime=WareHouseDto.UpdateTime,
+               CreateTime=DateValue,
+               UpdateTime= DateValue,
+               UserId= ++UserId,
                AssociatedPerson=WareHouseDto.AssociatedPerson,
             };
-            _wareHouseRepository.Context.Insertable<WareHouse>(wareHouse).ExecuteCommand();//.AddAsync(userInfo);
+            _wareHouseRepository.Context.Insertable<WareHouse>(wareHouse).ExecuteCommand();
             RaiseRequestClose(new DialogResult(ButtonResult.OK));
         }
 
+        static int UserId { get; set; }
+
         private void ExecuteCancel(string parameter)
         {
-
-            //  RequestClose?.Invoke(new DialogResult(ButtonResult.No));
             RaiseRequestClose(new DialogResult(ButtonResult.No));
         }
 

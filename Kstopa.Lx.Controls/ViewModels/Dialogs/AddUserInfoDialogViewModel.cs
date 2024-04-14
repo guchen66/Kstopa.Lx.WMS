@@ -33,7 +33,6 @@ namespace Kstopa.Lx.Controls.ViewModels.Dialogs
             set { SetProperty(ref _name, value); }
         }
 
-
         private string _jobNumber;
 
         public string JobNumber
@@ -74,16 +73,7 @@ namespace Kstopa.Lx.Controls.ViewModels.Dialogs
             set => SetProperty(ref _roleName, value);
         }
 
-        public void UpdateSort()
-        {
-
-        }
-        private DateTime _dateValue = DateTime.Now;
-        public DateTime DateValue
-        {
-            get { return _dateValue; }
-            set { SetProperty(ref _dateValue, value); }
-        }
+      
 
         #endregion
 
@@ -126,6 +116,7 @@ namespace Kstopa.Lx.Controls.ViewModels.Dialogs
                 Name = InputName,
                 Password = InputPassword,
                 CreateTime = DateValue,
+                UpdateTime = DateValue,
                 RoleId = RoleName.ToInt()+1,                //因为NewLife扩展枚举转Int默认是从0开始的
                 Role = new RoleInfo() // 创建RoleInfo对象并赋值给导航属性
                 {

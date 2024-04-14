@@ -24,5 +24,7 @@ namespace Kstopa.Lx.Core.Common
         public static readonly string HeaderRegion = "HeaderRegion";
         public static readonly string ContentRegion = "ContentRegion";
         public static readonly string FooterRegion = "FooterRegion";
+
+        public static readonly string OrderManagerRegion = "OrderManagerRegion";
     }
 }

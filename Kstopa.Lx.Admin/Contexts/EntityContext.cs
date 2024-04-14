@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Kstopa.Lx.Admin.Providers
+namespace Kstopa.Lx.Admin.Contexts
 {
     /// <summary>
     /// 表的数据上下文

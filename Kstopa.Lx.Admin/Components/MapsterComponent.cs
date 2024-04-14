@@ -1,4 +1,5 @@
-﻿using MahApps.Metro.Controls.Dialogs;
+﻿using Kstopa.Lx.Admin.Contexts;
+using MahApps.Metro.Controls.Dialogs;
 using Mapster;
 using MapsterMapper;
 using Prism.Ioc;
@@ -26,6 +27,24 @@ namespace Kstopa.Lx.Admin.Components
             var mapper = new Mapper(config);
             registry.RegisterInstance(typeof(Mapper), mapper);
             registry.Register<IMapper, Mapper>();
+
+           /* MapsterIocService.RegisterMapster(x =>
+            {
+                x.Adapt(registry);
+            });*/
         }
+    }
+
+    public class MapsterIocService
+    {
+        public static void RegisterMapster(Action<Mapper> mapper)
+        {
+            MapsterExtension.Mapper = mapper;
+        }
+    }
+
+    public static class MapsterExtension
+    {
+        public static Action<Mapper> Mapper { get; set; }
     }
 }

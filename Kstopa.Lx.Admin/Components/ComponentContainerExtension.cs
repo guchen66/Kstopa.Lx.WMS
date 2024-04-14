@@ -1,4 +1,5 @@
 ﻿using Kstopa.Lx.Admin.Components;
+using Kstopa.Lx.Admin.Providers;
 using Prism.Ioc;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,7 @@ namespace Kstopa.Lx.Core.Extensions
         public static IContainerRegistry RegisterComponent(this IContainerRegistry registry, Type componentType, object options = default)
         {
             // 创建组件依赖链
-            var componentContextLinkList = Penetrates.CreateDependLinkList(componentType, options);
+            var componentContextLinkList = ManualDependProvider.CreateDependLinkList(componentType, options);
 
             // 逐条创建组件实例并调用
             foreach (var context in componentContextLinkList)

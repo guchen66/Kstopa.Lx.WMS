@@ -55,12 +55,12 @@ namespace Kstopa.Lx.Controls.ViewModels.Dialogs
 
 
         public List<UserInfo> users = null;
-        private ObservableCollection<UserInfo> _UserInfoList;
+        private ObservableCollection<UserInfo> _userInfoList;
 
         public ObservableCollection<UserInfo> UserInfoList
         {
-            get { return _UserInfoList; }
-            set { SetProperty(ref _UserInfoList, value); }
+            get { return _userInfoList; }
+            set { SetProperty(ref _userInfoList, value); }
         }
         private DateTime _dateValue = DateTime.Now;
         public DateTime DateValue
@@ -119,7 +119,7 @@ namespace Kstopa.Lx.Controls.ViewModels.Dialogs
                 users.Password = InputPassword;
               
                 users.RoleId = RoleName.ToInt()+1;       //导航一对一修改RloId就行  +1是因为枚举从0开始的，而数据库Role表的主键是从1开始的
-                users.CreateTime = DateValue;
+                users.UpdateTime = DateValue;
               var s=  _userRepository.Context.Updateable(users).ExecuteCommand();
             }
             RaiseRequestClose(new DialogResult(ButtonResult.OK));

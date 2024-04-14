@@ -95,16 +95,6 @@ namespace Kstopa.Lx.Controls.ViewModels
             }
         }
 
-        public async void ShowProgressDialogAsync()
-        {
-            var controller = await DialogCoordinator.ShowProgressAsync(this, "请稍等", "操作失败...");
-            controller.SetIndeterminate();
-            // 执行长时间运行的操作
-            await Task.Delay(2000);
-
-            await controller.CloseAsync();
-        }
-
         /// <summary>
         /// 查询User
         /// </summary>
@@ -175,26 +165,17 @@ namespace Kstopa.Lx.Controls.ViewModels
         private async void ExecuteDelUser(int? ids)
         {
             var model = _userRepository.Context.Queryable<UserInfo>().Where(it => it.Id == ids);
-
             if (model != null)
             {
-                var settings = new MetroDialogSettings
-                {
-                    ColorScheme = MetroDialogColorScheme.Accented,
-                    AnimateShow = false,
-                    AnimateHide = false,
-                    AffirmativeButtonText = "确认"
-                };
-                var result = await this.DialogCoordinator.ShowMessageAsync(this, "是否删除该用户?", "删除用户", MessageDialogStyle.AffirmativeAndNegative, settings);
+                var result = await ShowBaseNavigationAwareMessageDialogAsync();
                 if (result == MessageDialogResult.Affirmative)
                 {
-                    //软删除
-                    _userRepository.Context.Deleteable<UserInfo>().In(ids).IsLogic().ExecuteCommand(); 
-                   this.ExecuteAutoRefresh();
+                    _userRepository.Context.Deleteable<UserInfo>().In(ids).IsLogic().ExecuteCommand();
+                    ExecuteAutoRefresh();
                 }
                 if (result == MessageDialogResult.Negative)
                 {
-                    this.ExecuteAutoRefresh();
+                    ExecuteAutoRefresh();
                 }
             }
         }

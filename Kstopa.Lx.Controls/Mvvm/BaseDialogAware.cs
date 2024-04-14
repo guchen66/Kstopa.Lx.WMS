@@ -12,7 +12,12 @@ namespace Kstopa.Lx.Controls.Mvvm
     public abstract class BaseDialogAware : BindableBase, IDialogAware
     {
         public string Title => "弹窗基类";
-
+        private DateTime _dateValue = DateTime.Now;
+        public DateTime DateValue
+        {
+            get { return _dateValue; }
+            set { SetProperty(ref _dateValue, value); }
+        }
         public event Action<IDialogResult> RequestClose;
         private RoleEnum _roleName;
 

@@ -9,10 +9,12 @@ namespace Kstopa.Lx.Controls.Converters
 {
     public class MyDateTimePicker : DateTimePicker
     {
-        /* protected override string GetValueForTextBox()
-         {
-             return SelectedDateTime?.ToString("yyyy-MM-dd HH:mm:ss")!;
-         }*/
+        protected override string GetValueForTextBox()
+        {
+          
+            return SelectedDateTime?.ToString("yyyy-MM-dd HH:mm:ss")!;
+
+        }
 
 
         /*  protected override string GetValueForTextBox()
@@ -20,9 +22,10 @@ namespace Kstopa.Lx.Controls.Converters
               return string.Empty;
           }*/
 
-        protected override string GetValueForTextBox()
-        {
-            return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-        }
+        /*     protected override string GetValueForTextBox()
+             {
+                 return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+             }*/
     }
+
 }

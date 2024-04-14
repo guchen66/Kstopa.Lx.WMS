@@ -105,7 +105,7 @@
                         Height="30"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        FontSize="16"
+                        FontSize="16" 
                         SelectedDateTime="{Binding DateValue, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
 

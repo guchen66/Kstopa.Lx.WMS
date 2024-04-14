@@ -92,8 +92,10 @@
                         Width="80"
                         VerticalAlignment="Center"
                         FontSize="20"
-                        Text="日期：" />
+                        Text="修改日期：" />
                     <cvt:MyDateTimePicker
+                        SelectedDateFormat="Long"
+                        SelectedTimeFormat="Long"
                         Width="220"
                         Height="30"
                         HorizontalAlignment="Center"

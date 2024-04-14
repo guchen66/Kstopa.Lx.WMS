@@ -89,8 +89,8 @@
 
                 <DataGridTextColumn Binding="{Binding Tag}" Header="标记" Width="120"/>
 
-                <DataGridTextColumn Binding="{Binding CreateTime, StringFormat='yyyy/MM/dd'}" Header="创建日期" Width="120"/>
-
+                <DataGridTextColumn Binding="{Binding CreateTime, StringFormat='yyyy/MM/dd HH:mm'}" Header="创建日期" Width="160"/>
+                <DataGridTextColumn Binding="{Binding UpdateTime, StringFormat='yyyy/MM/dd HH:mm'}" Header="修改日期" Width="160"/>
                 <DataGridTextColumn Binding="{Binding UserId}" Header="操作员Id" Width="120"/>
 
                 <DataGridTextColumn Binding="{Binding AssociatedPerson}" Header="操作员" Width="120"/>

@@ -24,9 +24,9 @@ namespace Kstopa.Lx.Core.Dtos
             set => SetProperty(ref _wareHouseName, value);
         }
 
-        private int _itemTotal;
+        private int? _itemTotal;
 
-        public int ItemTotal
+        public int? ItemTotal
         {
             get => _itemTotal;
             set => SetProperty(ref _itemTotal, value);

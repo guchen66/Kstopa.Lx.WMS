@@ -13,6 +13,8 @@
                 <ResourceDictionary Source="pack://application:,,,/Kstopa.Lx.Controls;component/Styles/RadioButtonStyle.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Kstopa.Lx.Controls;component/Styles/MyDataGridStyle.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Kstopa.Lx.Controls;component/Themes/PrismDialogStyle.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Kstopa.Lx.Controls;component/Styles/MyTabControlStyle.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Kstopa.Lx.Controls;component/Styles/MyListViewStyle.xaml" />
                 <!--<ResourceDictionary Source="/Assets/Styles/RadioButtonStyle.xaml" />
                 <ResourceDictionary Source="/Assets/Styles/SkinColorsStyle.xaml" />
                 <ResourceDictionary Source="/Assets/Styles/MyDataGridStyle.xaml" />-->

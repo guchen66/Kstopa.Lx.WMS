@@ -4,8 +4,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Kstopa.Lx.Admin.Components;
 
-namespace Kstopa.Lx.Admin.Components
+namespace Kstopa.Lx.Admin.Contexts
 {
     public sealed class ComponentContext
     {
@@ -13,7 +14,7 @@ namespace Kstopa.Lx.Admin.Components
         /// 组件类型
         /// </summary>
         public Type ComponentType { get; internal set; }
-        
+
         /// <summary>
         /// 上级组件上下文
         /// </summary>

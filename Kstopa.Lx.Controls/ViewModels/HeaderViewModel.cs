@@ -1,4 +1,6 @@
-﻿using Kstopa.Lx.Controls.Mvvm;
+﻿using ControlzEx.Theming;
+using Kstopa.Lx.Controls.Mvvm;
+using Kstopa.Lx.Core.Consts;
 using Microsoft.VisualBasic.ApplicationServices;
 using Prism.Commands;
 using Prism.Ioc;
@@ -8,54 +10,58 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows;
+using System.Windows.Input;
+using Kstopa.Lx.SugarDb;
+using Kstopa.Lx.Admin.IServices;
+using Kstopa.Lx.Admin.Services;
 namespace Kstopa.Lx.Controls.ViewModels
 {
     public class HeaderViewModel : BaseViewModel
     {
-      
+        IProductDataConfigService _productDataConfigService;
         public HeaderViewModel(IContainerProvider provider) : base(provider)
         {
-
+            _productDataConfigService=provider.Resolve<IProductDataConfigService>();
+             WindowDataHandler.Config= _productDataConfigService.GetProductDataConfig();
+             LoadedCommand = new DelegateCommand(GetBatch);
         }
+
 
         #region HeaderView Skin颜色修改
-       /* private SkinColorInfo _selectedSkinColor;
-        public SkinColorInfo SelectedSkinColor
-        {
-            get { return _selectedSkinColor; }
-            set
-            {
-                *//* if (_selectedSkinColor != value)
-                 {
-                     _selectedSkinColor = value;
-                     RaisePropertyChanged();
-                 }*//*
-                _selectedSkinColor = value;
-                RaisePropertyChanged();
 
+        private string _role;
+
+        public string Batch
+        {
+            get => _role;
+            set => SetProperty(ref _role, value);
+        }
+
+        public void GetBatch()
+        {         
+            if (WindowDataHandler.Config!=null)
+            {
+                Batch = WindowDataHandler.Config.Batch;
             }
         }
-        public IEnumerable<SkinColorInfo> SkinColorItemsProvider
-        {
-            *//* get
-             {
-                 return Enum.GetValues(typeof(SkinColorInfo))
-                            .Cast<SkinColorInfo>()
-                            .ToList();
-             }
- *//*
-            get
-            {
-                var colors = new List<SkinColorInfo>();
-                colors.Add(new SkinColorInfo() { Name = "Blue", Color = Brushes.Blue });
-                colors.Add(new SkinColorInfo() { Name = "Green", Color = Brushes.Green });
-                colors.Add(new SkinColorInfo() { Name = "Red", Color = Brushes.Red });
-                colors.Add(new SkinColorInfo() { Name = "Yellow", Color = Brushes.Yellow });
-                return colors;
-            }
 
-        }*/
+        private SkinColor _selectedSkinColor;
+
+        public SkinColor SelectedSkinColor
+        {
+            get => _selectedSkinColor;
+            set
+            {
+                if (_selectedSkinColor != value) 
+                {
+                    _selectedSkinColor = value;
+                    ThemeManager.Current.ChangeTheme(Application.Current, _selectedSkinColor.Color);
+                    RaisePropertyChanged();
+                };
+            }
+        }
+
 
         #endregion
 
@@ -68,7 +74,6 @@ namespace Kstopa.Lx.Controls.ViewModels
             set { search = value; RaisePropertyChanged(); }
         }
 
-
-
+        public ICommand LoadedCommand { get; set; } 
     }
 }

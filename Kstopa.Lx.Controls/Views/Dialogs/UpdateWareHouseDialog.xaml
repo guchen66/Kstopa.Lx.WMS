@@ -17,7 +17,7 @@
     <UserControl.Resources>
         <cvt:SelectetemRoleToIntConverter x:Key="selectetemRoleToIntConverter" />
     </UserControl.Resources>
-    <Border Width="500" Height="350">
+    <Border Width="500" Height="550">
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
@@ -26,17 +26,17 @@
             <StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock
-                        Width="80"
+                        Width="110"
                         VerticalAlignment="Center"
                         FontSize="20"
-                        Text="Id：" />
+                        Text="仓储Id：" />
                     <TextBox
                         Width="220"
                         Height="30"
                         VerticalAlignment="Center"
                         FontSize="16"
                         IsReadOnly="True"
-                        Text="{Binding CurrentId}" />
+                        Text="{Binding WareHouseDto.WareHouseId}" />
                     <TextBlock
                         Margin="10,0,0,0"
                         FontSize="15"
@@ -45,55 +45,92 @@
                 </StackPanel>
                 <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
                     <TextBlock
-                        Width="80"
+                        Width="110"
                         VerticalAlignment="Center"
                         FontSize="20"
-                        Text="姓名：" />
+                        Text="仓储名称：" />
                     <TextBox
                         Width="220"
                         Height="30"
                         VerticalAlignment="Center"
                         FontSize="16"
-                        Text="{Binding InputName, UpdateSourceTrigger=PropertyChanged}" />
+                        Text="{Binding WareHouseDto.WareHouseName, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
                 <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
                     <TextBlock
-                        Width="80"
+                        Width="110"
                         VerticalAlignment="Center"
                         FontSize="20"
-                        Text="密码：" />
-                    <PasswordBox
-                        Width="220"
-                        Height="30"
-                        VerticalAlignment="Center"
-                        mah:PasswordBoxBindingBehavior.Password="{Binding InputPassword, Mode=TwoWay}"
-                        mah:TextBoxHelper.ClearTextButton="True"
-                        mah:TextBoxHelper.Watermark="请输入密码"
-                        FontSize="16" />
-
-                </StackPanel>
-
-                <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
-                    <TextBlock
-                        Width="80"
-                        VerticalAlignment="Center"
-                        FontSize="20"
-                        Text="角色：" />
-                    <ComboBox
-                        x:Name="comboBox"
+                        Text="仓储总数：" />
+                    <TextBox
                         Width="220"
                         Height="30"
                         VerticalAlignment="Center"
                         FontSize="16"
-                        ItemsSource="{markUp:EnumBinding {x:Type const:RoleEnum}}"
-                        SelectedItem="{Binding RoleName}" />
+                        Text="{Binding WareHouseDto.ItemTotal, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
                 <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
                     <TextBlock
-                        Width="80"
+                        Width="110"
                         VerticalAlignment="Center"
                         FontSize="20"
-                        Text="日期：" />
+                        Text="工件类型：" />
+                    <TextBox
+                        Width="220"
+                        Height="30"
+                        VerticalAlignment="Center"
+                        FontSize="16"
+                        Text="{Binding WareHouseDto.ItemType, UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+
+                <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
+                    <TextBlock
+                        Width="110"
+                        VerticalAlignment="Center"
+                        FontSize="20"
+                        Text="工件价格：" />
+                    <TextBox
+                        Width="220"
+                        Height="30"
+                        VerticalAlignment="Center"
+                        FontSize="16"
+                        Text="{Binding WareHouseDto.Price, UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+                <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
+                    <TextBlock
+                        Width="110"
+                        VerticalAlignment="Center"
+                        FontSize="20"
+                        Text="仓储标记：" />
+                    <TextBox
+                        Width="220"
+                        Height="30"
+                        VerticalAlignment="Center"
+                        FontSize="16"
+                        Text="{Binding WareHouseDto.Tag, UpdateSourceTrigger=PropertyChanged}" />
+
+                </StackPanel>
+                <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
+                    <TextBlock
+                        Width="110"
+                        VerticalAlignment="Center"
+                        FontSize="20"
+                        Text="负责人：" />
+                    <TextBox
+                        Width="220"
+                        Height="30"
+                        VerticalAlignment="Center"
+                        FontSize="16"
+                        Text="{Binding WareHouseDto.AssociatedPerson, UpdateSourceTrigger=PropertyChanged}" />
+
+                </StackPanel>
+
+                <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
+                    <TextBlock
+                        Width="110"
+                        VerticalAlignment="Center"
+                        FontSize="20"
+                        Text="修改日期：" />
                     <timePicker:MyDateTimePicker
                         Width="220"
                         Height="30"
@@ -102,7 +139,6 @@
                         FontSize="16"
                         SelectedDateTime="{Binding DateValue, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
-
             </StackPanel>
 
             <Grid Grid.Row="1" Margin="20">
@@ -117,7 +153,7 @@
                         Padding="0,0,0,3"
                         Background="#71c4ef"
                         Command="{Binding SaveCommand}"
-                        CommandParameter="{Binding CurrentId}"
+                        CommandParameter="{Binding WareHouseDto.Id}"
                         Content="保存"
                         FontSize="20" />
                     <Button

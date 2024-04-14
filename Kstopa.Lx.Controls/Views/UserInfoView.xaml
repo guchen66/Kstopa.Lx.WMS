@@ -98,12 +98,12 @@
                     Header="职位" />
 
                 <DataGridTextColumn
-                    Width="150"
-                    Binding="{Binding CreateTime, StringFormat='yyyy/MM/dd'}"
+                    Width="160"
+                    Binding="{Binding CreateTime, StringFormat='yyyy/MM/dd HH:mm'}"
                     Header="创建日期" />
                 <DataGridTextColumn
-                    Width="150"
-                    Binding="{Binding UpdateTime, StringFormat='yyyy/MM/dd'}"
+                    Width="160"
+                    Binding="{Binding UpdateTime, StringFormat='yyyy/MM/dd HH:mm'}"
                     Header="修改日期" />
                 <DataGridTemplateColumn Width="*" Header="操作">
                     <DataGridTemplateColumn.CellTemplate>

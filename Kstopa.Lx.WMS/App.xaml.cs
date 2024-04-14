@@ -20,6 +20,7 @@ using System.Reflection;
 using Kstopa.Lx.Admin.Providers.LoginSign;
 using Kstopa.Lx.Core.Extensions;
 using Kstopa.Lx.Admin.Components;
+using ControlzEx.Theming;
 
 namespace Kstopa.Lx.WMS
 {
@@ -42,6 +43,7 @@ namespace Kstopa.Lx.WMS
             }
             AppStartup.AddSqlSugar();                 //注册SqlSugar
             base.OnStartup(e);
+          
         }
 
         protected override void OnExit(ExitEventArgs e)
