@@ -1,5 +1,6 @@
 ﻿using Kstopa.Lx.Admin.Contexts;
 using Kstopa.Lx.Admin.Providers.LoginSign;
+using Kstopa.Lx.Admin.Services;
 using Mapster;
 using MapsterMapper;
 using MySqlConnector.Logging;
@@ -18,7 +19,7 @@ namespace Kstopa.Lx.Admin.Components
         public void Load(IContainerRegistry registry, ComponentContext context)
         {
             registry.Register<ILoginService, LoginService>();
-         //   registry.RegisterSingleton<ILogger, NLogLogger>();
+            registry.RegisterSingleton<Kstopa.Lx.Admin.IServices.ILogger, DefaultLogger>();
         }
     }
 }

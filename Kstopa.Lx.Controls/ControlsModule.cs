@@ -1,7 +1,9 @@
 ﻿using Kstopa.Lx.Controls.ViewModels.Dialogs;
+using Kstopa.Lx.Controls.ViewModels.SettingSign;
 using Kstopa.Lx.Controls.Views;
 using Kstopa.Lx.Controls.Views.Dialogs;
 using Kstopa.Lx.Controls.Views.OrderSign;
+using Kstopa.Lx.Controls.Views.SettingSign;
 using MahApps.Metro.IconPacks;
 using Prism.Ioc;
 using Prism.Modularity;
@@ -35,6 +37,8 @@ namespace Kstopa.Lx.Controls
             containerRegistry.RegisterDialog<AddWareHouseDialog, AddWareHouseDialogViewModel>();
             containerRegistry.RegisterDialog<UpdateUserInfoDialog, UpdateUserInfoDialogViewModel>();
             containerRegistry.RegisterDialog<UpdateWareHouseDialog, UpdateWareHouseDialogViewModel>();
+
+            containerRegistry.RegisterDialog<PrescriptionDialog, PrescriptionDialogViewModel>();
         }
     }
 }

@@ -3,6 +3,7 @@ using MapsterMapper;
 using Prism.Ioc;
 using Prism.Mvvm;
 using Prism.Regions;
+using Prism.Services.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace Kstopa.Lx.Controls.Mvvm
     public abstract class BaseNavigationAware :BaseViewModel,  INavigationAware
     {
         public IDialogCoordinator DialogCoordinator { get; set; }
+       
         public IMapper DefaultMapper { get; set; }
         protected BaseNavigationAware(IContainerProvider provider) : base(provider)
         {

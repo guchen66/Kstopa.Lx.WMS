@@ -16,6 +16,13 @@ namespace Kstopa.Lx.SugarDb.Extensions
            // DbScoped.Sugar.QueryFilter.AddTableFilter<UserInfo>(it => it.IsDelete == "0");
             client.QueryFilter.Add(new TableFilterItem<UserInfo>(it => it.IsDelete == "0" || it.IsDelete == null));
             client.QueryFilter.Add(new TableFilterItem<WareHouse>(it => it.IsDelete == "0" || it.IsDelete == null));
+            client.QueryFilter.Add(new TableFilterItem<WorkStation>(it => it.IsDelete == "0" || it.IsDelete == null));
+            client.QueryFilter.Add(new TableFilterItem<WorkStep>(it => it.IsDelete == "0" || it.IsDelete == null));
+            client.QueryFilter.Add(new TableFilterItem<RoleInfo>(it => it.IsDelete == "0" || it.IsDelete == null));
+            client.QueryFilter.Add(new TableFilterItem<GoodInfo>(it => it.IsDelete == "0" || it.IsDelete == null));
+            client.QueryFilter.Add(new TableFilterItem<DeviceInfo>(it => it.IsDelete == "0" || it.IsDelete == null));
+            client.QueryFilter.Add(new TableFilterItem<ProductType>(it => it.IsDelete == "0" || it.IsDelete == null));
+            client.QueryFilter.Add(new TableFilterItem<ProductDataConfig>(it => it.IsDelete == "0" || it.IsDelete == null));
         }
     }
 }

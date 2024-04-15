@@ -67,7 +67,9 @@ namespace Kstopa.Lx.WMS
                     typeof(UserInfo), typeof(RoleInfo),typeof(AsideMenuControl),
                     typeof(WareHouse),typeof(ProductDataConfig),typeof(OrderHeaderItem),
                     typeof(GoodInfo),typeof(WorkStation),typeof(WorkStep),
-                     typeof(DeviceInfo), typeof(ProductData),typeof(ProductType), typeof(ProductTypeMapping)
+                     typeof(DeviceInfo), typeof(ProductData),typeof(ProductType),
+                     typeof(ProductTypeMapping),
+                     typeof(SetConfigInfo),typeof(AlarmInfo)
                 );
             }
             //生成种子数据

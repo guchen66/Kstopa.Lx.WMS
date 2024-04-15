@@ -21,7 +21,7 @@ namespace Kstopa.Lx.SugarDb.Models
         /// 2表示生产产品
         /// 3表示完成产品
         /// </summary>
-        [SugarColumn(ColumnDescription = "备注")]
-        public string Remark { get; set; }
+        [SugarColumn(ColumnDescription = "备注",IsNullable =true)]
+        public string? Remark { get; set; }
     }
 }
