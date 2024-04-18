@@ -68,14 +68,20 @@
                         VerticalAlignment="Center"
                         FontSize="20"
                         Text="配方4：" />
-                    <ComboBox
+                    <TextBox
+                        Width="220"
+                        Height="30"
+                        VerticalAlignment="Center"
+                        FontSize="16"
+                        Text="{Binding Repice.Recipe4, UpdateSourceTrigger=PropertyChanged}" />
+                    <!--<ComboBox
                         x:Name="comboBox"
                         Width="220"
                         Height="30"
                         VerticalAlignment="Center"
                         FontSize="16"
                         ItemsSource="{markUp:EnumBinding {x:Type const:RoleEnum}}"
-                        SelectedItem="{Binding RoleName}" />
+                        SelectedItem="{Binding RoleName}" />-->
                 </StackPanel>
                 <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
                     <TextBlock

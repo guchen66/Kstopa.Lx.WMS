@@ -22,67 +22,74 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <UserControl.Resources>
-        <Style TargetType="ListBoxItem">
+        <!--<Style TargetType="ListBoxItem">
             <Setter Property="FontFamily" Value="Verdana" />
             <Setter Property="FontSize" Value="11" />
             <Setter Property="Padding" Value="10" />
-        </Style>
-        <DataTemplate x:Key="DetailTemplate">
-            <DataGrid
-                Name="dataGrid"
-                Margin="5"
-                VerticalAlignment="Top"
-                AlternationCount="2"
-                AutoGenerateColumns="False"
-                CanUserAddRows="False"
-                CanUserReorderColumns="False"
-                CanUserResizeColumns="False"
-                CanUserResizeRows="False"
-                CanUserSortColumns="False"
-                IsReadOnly="True"
-                ItemsSource="{Binding ProductDataInfo}"
-                RowHeaderWidth="0"
-                SelectionMode="Single"
-                Style="{StaticResource MyDataGridStyle}">
-                <DataGrid.Columns>
-                    <DataGridTextColumn
-                        Width="150"
-                        Binding="{Binding ProductId}"
-                        Header="产品Id" />
-                    <DataGridTextColumn
-                        Width="150"
-                        Binding="{Binding ProductCode}"
-                        Header="产品唯一标识符" />
-                    <DataGridTextColumn
-                        Width="150"
-                        Binding="{Binding ProductName}"
-                        Header="产品名称" />
+        </Style>-->
 
-                    <DataGridTextColumn
-                        Width="150"
-                        Binding="{Binding OkCount}"
-                        Header="Ok数量" />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <DataTemplate x:Key="DetailTemplate">
+                <DataGrid
+                    Name="dataGrid"
+                    Margin="5"
+                    VerticalAlignment="Top"
+                    AlternationCount="2"
+                    AutoGenerateColumns="False"
+                    CanUserAddRows="False"
+                    CanUserReorderColumns="False"
+                    CanUserResizeColumns="False"
+                    CanUserResizeRows="False"
+                    CanUserSortColumns="False"
+                    IsReadOnly="True"
+                    ItemsSource="{Binding ProductDataInfo}"
+                    RowHeaderWidth="0"
+                    SelectionMode="Single"
+                    Style="{StaticResource MyDataGridStyle}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn
+                            Width="150"
+                            Binding="{Binding ProductId}"
+                            Header="产品Id" />
+                        <DataGridTextColumn
+                            Width="150"
+                            Binding="{Binding ProductCode}"
+                            Header="产品唯一标识符" />
+                        <DataGridTextColumn
+                            Width="150"
+                            Binding="{Binding ProductName}"
+                            Header="产品名称" />
 
-                    <DataGridTextColumn
-                        Width="150"
-                        Binding="{Binding NgCount}"
-                        Header="Ng数量" />
-                    <DataGridTextColumn
-                        Width="150"
-                        Binding="{Binding ProductState}"
-                        Header="产品状态" />
-                    <DataGridTextColumn
-                        Width="150"
-                        Binding="{Binding Image}"
-                        Header="产品图片" />
-                    <DataGridTextColumn
-                        Width="160"
-                        Binding="{Binding CreateTime, StringFormat='yyyy/MM/dd HH:mm'}"
-                        Header="生产日期" />
+                        <DataGridTextColumn
+                            Width="150"
+                            Binding="{Binding OkCount}"
+                            Header="Ok数量" />
 
-                </DataGrid.Columns>
-            </DataGrid>
-        </DataTemplate>
+                        <DataGridTextColumn
+                            Width="150"
+                            Binding="{Binding NgCount}"
+                            Header="Ng数量" />
+                        <DataGridTextColumn
+                            Width="150"
+                            Binding="{Binding ProductState}"
+                            Header="产品状态" />
+                        <DataGridTextColumn
+                            Width="150"
+                            Binding="{Binding Image}"
+                            Header="产品图片" />
+                        <DataGridTextColumn
+                            Width="160"
+                            Binding="{Binding CreateTime, StringFormat='yyyy/MM/dd HH:mm'}"
+                            Header="生产日期" />
+
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DataTemplate>
+        </ResourceDictionary>
+
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -90,12 +97,18 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <ListBox IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding ProductTypes}" Background="CadetBlue" Margin="0 20 0 0">
+        <ListBox
+            Background="#71c4ef"
+            IsSynchronizedWithCurrentItem="True"
+            ItemContainerStyle="{StaticResource MyListBoxItemStyle}"
+            ItemsSource="{Binding ProductTypes}">
+
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding CategoryName}" FontSize="20"/>
+                    <TextBlock  TextAlignment="Center" FontFamily="Verdana"  FontSize="18" Text="{Binding CategoryName}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
+
         </ListBox>
 
         <DockPanel Grid.Column="1">
@@ -120,7 +133,7 @@
                     SelectedItem="{Binding ProductEnumName}" />
                 <TextBlock
                     Width="80"
-                    Margin="10 0 0 0"
+                    Margin="10,0,0,0"
                     VerticalAlignment="Center"
                     FontSize="16"
                     Text="开始日期：" />
@@ -151,13 +164,15 @@
                     FontSize="16"
                     Text="Id搜索查询"
                     TextAlignment="Center" />
-               
+
                 <TextBox Width="180" />
                 <Button
                     Width="80"
                     Margin="10,0,0,0"
                     Background="LightGreen"
-                    Content="搜索" Command="{Binding QueryCommand}" CommandParameter="{Binding SearchContent}"/>
+                    Command="{Binding QueryCommand}"
+                    CommandParameter="{Binding SearchContent}"
+                    Content="搜索" />
             </StackPanel>
             <ContentControl
                 HorizontalAlignment="Center"

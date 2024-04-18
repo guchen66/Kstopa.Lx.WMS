@@ -12,6 +12,7 @@
     Height="350"
     prism:ViewModelLocator.AutoWireViewModel="True"
     GlowBrush="{DynamicResource MahApps.Brushes.Accent}"
+    Background="#5080c8"
     ShowIconOnTitleBar="True"
     ResizeMode="NoResize"
     Style="{DynamicResource MahApps.Styles.MetroWindow.Clean}"
@@ -24,7 +25,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid>
+    <Grid Background="#5080c8">
         <Grid Margin="100,50,100,50">
             <Grid.RowDefinitions>
                 <RowDefinition />
@@ -32,6 +33,7 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
+            <TextBlock Text="管理系统" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="Medium"/>
             <StackPanel Grid.Row="1" Orientation="Horizontal">
                 <TextBlock
                     Width="60"
@@ -76,13 +78,13 @@
                     Width="80"
                     Command="{Binding LoginCommand}"
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=mah:MetroWindow}}"
-                    Content="登录"
+                    Content="登录" Background="#3DD0FB"
                     IsDefault="True" />
                 <Button
                     Width="80"
                     Margin="40,0,0,0"
                     Command="{Binding CancelCommand}"
-                    Content="取消"
+                    Content="取消" Background="#FF5733"
                     IsCancel="True" />
             </StackPanel>
         </Grid>

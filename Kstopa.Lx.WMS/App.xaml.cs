@@ -84,24 +84,15 @@ namespace Kstopa.Lx.WMS
         //新建类库，通过模块化传入用户控件
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
+            base.ConfigureModuleCatalog(moduleCatalog);
             //注册模块就行
             moduleCatalog.AddModule<ControlsModule>();
-            base.ConfigureModuleCatalog(moduleCatalog);
+            moduleCatalog.AddModule<ShellModule>();
         }
         protected override void OnInitialized()
         {
             base.OnInitialized();
             var regionManager = Container.Resolve<IRegionManager>();
         }
-/*
-        protected override IContainerExtension CreateContainerExtension()
-        {
-            return base.CreateContainerExtension();
-        }
-
-        protected override DryIoc.Rules CreateContainerRules()
-        {
-            return base.CreateContainerRules();
-        }*/
     }
 }

@@ -28,9 +28,6 @@ namespace Kstopa.Lx.WMS.ViewModels
         public MainWindowViewModel(IBaseRepository<AsideMenuControl> controlRepository,IContainerProvider provider) : base(provider)
         {
             _controlRepository = controlRepository;
-            RegionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(HomeView));
-            RegionManager.RegisterViewWithRegion(RegionNames.HeaderRegion, typeof(HeaderView));
-            RegionManager.RegisterViewWithRegion(RegionNames.FooterRegion, typeof(FooterView));
             LoadedCommand = new DelegateCommand(ExecuteLoaded);
             SelectedViewCommand = new DelegateCommand<string>(ExecuteSelected);
 
